@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Login Form</title>
+    <!-- FontAwesome Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Connecting CSS File -->
+    <link rel="stylesheet" href="Slidingform.css">
+</head>
+<body>
+
+    <!-- General Info Modal -->
+    <div class="modal-overlay" id="custom-modal">
+        <div class="modal-box">
+            <i class="fas fa-check-circle" id="modal-icon" style="color: #4CAF50;"></i>
+            <p id="modal-msg">Message goes here</p>
+            <button class="modal-btn" id="modal-close">OK</button>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgot-modal">
+        <div class="modal-box">
+            <i class="fas fa-envelope" style="color: #b84c2a;"></i>
+            <p>Enter your registered Email ID</p>
+            <input type="email" id="forgot-email-input" class="forgot-input" placeholder="youremail@email.com">
+            <p id="forgot-error" style="color: #d93025; font-size: 12px; display: none; margin-bottom: 10px;">Please enter a valid email address.</p>
+            <div class="modal-actions">
+                <button class="modal-btn cancel" id="forgot-cancel">Cancel</button>
+                <button class="modal-btn" id="forgot-send">Send Link</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" id="theme-btn">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <h1 class="college-title">College Project</h1>
+    <p class="sub-title">Sliding Login & Registration Form</p>
+
+    <div class="wrapper">
+        <input type="radio" name="slide" id="login" checked>
+        <input type="radio" name="slide" id="signup">
+        
+        <div class="slide-controls">
+            <label for="login" class="slide login">Login</label>
+            <label for="signup" class="slide signup">Signup</label>
+            <div class="slide-tab"></div>
+        </div>
+
+        <div class="form-container">
+            <div class="form-inner-container">
+                <!-- LOGIN FORM -->
+                <form action="#" class="login-form">
+                    <div id="login-error" class="error-message"></div>
+                    <div class="field">
+                        <input type="email" placeholder="youremail@email.com" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="password" required>
+                        <i class="fas fa-eye show-hide"></i>
+                    </div>
+                    <div class="pass-link"><a id="forgot-pass-link">Forgot password?</a></div>
+                    <div class="field btn">
+                        <div class="btn-inner"></div>
+                        <input type="submit" value="Login">
+                    </div>
+                    
+                    <div class="social-login">
+                        <p>Or login with</p>
+                        <div class="social-icons">
+                            <a class="dummy-link google" data-msg="Redirecting to Google for secure login..."><i class="fab fa-google"></i></a>
+                            <a class="dummy-link github" data-msg="Redirecting to GitHub for secure login..."><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- SIGNUP FORM -->
+                <form action="#" class="signup-form">
+                    <div id="signup-error" class="error-message"></div>
+                    <div class="field">
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+                    <div class="field">
+                        <input type="email" placeholder="youremail@email.com" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="signup-pass" placeholder="password" required>
+                        <i class="fas fa-eye show-hide"></i>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="signup-cpass" placeholder="Confirm password" required>
+                        <i class="fas fa-eye show-hide"></i>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-inner"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+
+                    <div class="social-login">
+                        <p>Or signup with</p>
+                        <div class="social-icons">
+                            <a class="dummy-link google" data-msg="Redirecting to Google for secure signup..."><i class="fab fa-google"></i></a>
+                            <a class="dummy-link github" data-msg="Redirecting to GitHub for secure signup..."><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connecting JavaScript File -->
+    <script src="Slidingform.js"></script>
+</body>
+</html>

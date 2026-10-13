@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Colors for Theme */
+:root {
+    --bg-color: #e4e9f7;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --title-color: #2c4a3e;
+    --sub-title: #333;
+    --tab-bg: #f2f2f2;
+    --tab-text: #333;
+    --input-border: #ccc;
+    --input-text: #333;
+    --social-bg: #fff;
+    --modal-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: rgba(22, 33, 62, 0.85);
+    --title-color: #e4e9f7;
+    --sub-title: #bbb;
+    --tab-bg: #0f3460;
+    --tab-text: #ddd;
+    --input-border: #0f3460;
+    --input-text: #fff;
+    --social-bg: #0f3460;
+    --modal-bg: rgba(22, 33, 62, 0.95);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 15px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-box {
+    background: var(--modal-bg); padding: 25px; border-radius: 15px;
+    text-align: center; width: 90%; max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); transform: translateY(-20px); transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.modal-box i { font-size: 35px; color: #b84c2a; margin-bottom: 10px; }
+.modal-box p { color: var(--input-text); font-size: 14px; font-weight: 500; margin-bottom: 15px; }
+
+.forgot-input {
+    width: 100%; height: 40px; margin-bottom: 10px; padding: 0 10px; border-radius: 8px;
+    border: 1px solid var(--input-border); background: transparent; color: var(--input-text); outline: none;
+}
+.forgot-input:focus { border-color: #b84c2a; }
+
+.modal-btn {
+    background: linear-gradient(135deg, #d37545, #b84c2a); color: #fff; border: none;
+    padding: 8px 20px; border-radius: 20px; font-size: 14px; cursor: pointer; font-weight: 500;
+}
+.modal-btn.cancel { background: #999; }
+.modal-actions { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+
+.theme-toggle {
+    position: absolute; top: 15px; right: 15px; font-size: 20px;
+    cursor: pointer; color: var(--title-color); background: var(--card-bg);
+    padding: 10px 12px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+h1.college-title { color: var(--title-color); font-size: 30px; font-weight: 700; margin-bottom: 5px; text-align: center; }
+p.sub-title { color: var(--sub-title); font-size: 16px; font-weight: 500; margin-bottom: 20px; text-align: center; }
+
+.wrapper {
+    background: var(--card-bg);
+    width: 100%; max-width: 380px; padding: 25px; border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px); overflow: hidden;
+}
+
+.slide-controls {
+    position: relative; display: flex; height: 45px; width: 100%;
+    background: var(--tab-bg); border-radius: 30px; margin-bottom: 15px;
+    justify-content: space-between; overflow: hidden;
+}
+.slide-controls .slide {
+    height: 100%; width: 50%; color: var(--tab-text); font-size: 16px;
+    font-weight: 500; text-align: center; line-height: 45px; cursor: pointer; z-index: 2;
+}
+.slide-controls .slide-tab {
+    position: absolute; height: 100%; width: 50%; left: 0; z-index: 1;
+    background: linear-gradient(135deg, #d37545, #b84c2a);
+    border-radius: 30px; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input[type="radio"] { display: none; }
+#signup:checked ~ .slide-controls .slide-tab { left: 50%; }
+#signup:checked ~ .slide-controls label.signup,
+#login:checked ~ .slide-controls label.login { color: #fff; font-weight: 600; }
+
+.form-container { width: 100%; overflow: hidden; }
+.form-inner-container { display: flex; width: 200%; }
+.form-inner-container form { width: 50%; transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+#signup:checked ~ .form-container .form-inner-container form.login-form { margin-left: -50%; }
+
+.form-inner-container form .field { height: 45px; width: 100%; margin-top: 15px; position: relative; }
+.form-inner-container form .field input {
+    height: 100%; width: 100%; outline: none; padding-left: 15px; padding-right: 40px;
+    font-size: 14px; border-radius: 10px; border: 1px solid var(--input-border);
+    color: var(--input-text); background: transparent; border-bottom-width: 2px;
+}
+.form-inner-container form .field input:focus { border-color: #b84c2a; }
+
+.field i.show-hide { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; cursor: pointer; }
+
+.pass-link { margin-top: 8px; text-align: right; }
+.pass-link a { color: #b84c2a; text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer; }
+
+.error-message { color: #d93025; font-size: 12px; text-align: center; margin-top: 5px; display: none; font-weight: 500; }
+
+.form-inner-container form .btn { height: 45px; width: 100%; border-radius: 30px; margin-top: 20px; position: relative; overflow: hidden; }
+.form-inner-container form .btn .btn-inner {
+    height: 100%; width: 100%; background: linear-gradient(135deg, #d37545, #b84c2a);
+    position: absolute; left: 0; z-index: -1;
+}
+.form-inner-container form .btn input[type="submit"] {
+    height: 100%; width: 100%; background: none; border: none; color: #fff;
+    font-size: 16px; font-weight: 500; cursor: pointer;
+}
+
+.social-login { text-align: center; margin-top: 20px; }
+.social-login p { color: var(--sub-title); font-size: 12px; margin-bottom: 10px; }
+.social-icons { display: flex; justify-content: center; gap: 15px; }
+.social-icons a {
+    display: flex; align-items: center; justify-content: center;
+    height: 38px; width: 38px; border-radius: 50%; background: var(--social-bg);
+    color: var(--input-text); text-decoration: none; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer;
+}
+.social-icons a:hover { color: #fff; }
+.social-icons a.google:hover { background: #db4437; }
+.social-icons a.github:hover { background: #333; }
+.dark-mode .social-icons a.github:hover { background: #000; }
+
+/* Media Query perfectly compacts elements for very small mobile screens */
+@media (max-height: 750px), (max-width: 400px) {
+    h1.college-title { font-size: 24px; }
+    p.sub-title { font-size: 14px; margin-bottom: 15px; }
+    .wrapper { padding: 20px; }
+    .theme-toggle { top: 10px; right: 10px; font-size: 16px; padding: 8px 10px; }
+    .form-inner-container form .field { height: 42px; margin-top: 12px; }
+    .form-inner-container form .btn { height: 42px; margin-top: 15px; }
+    .social-login { margin-top: 15px; }
+}
